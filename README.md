@@ -1,4 +1,4 @@
-# Node.js + Mongo + React App
+# Node.js + Mongo + React + Materialize App
 
 ## Dev environment
   client running on 3010 by using webpack-dev-server
@@ -6,7 +6,7 @@
   server running on 8010
 
   script:
-  "dev":""
+  "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
 
 ## Prod environment
   server running on 8010

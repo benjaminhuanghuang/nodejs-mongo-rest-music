@@ -18,10 +18,10 @@ class Header extends Component {
         <nav>
           <div className="nav-wrapper">
             <div className="col s12">
-              <a href="#" className="brand-logo">UpStar Music</a>
+              <a href="#" className="brand-logo">Mongo Music</a>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li>
-                  <Link  to={`/artists/${this.state.id}`} onClick={this.setLink.bind(this)}>
+                  <Link  to={`/artists/${this.state.id}`}>
                     Random Artist
                   </Link>
                 </li>

@@ -13,15 +13,15 @@ import {
   RESET_SELECTION
 } from './types';
 
-import GetAgeRange from '../../database/queries/GetAgeRange';
-import GetYearsActiveRange from '../../database/queries/GetYearsActiveRange';
-import SearchArtists from '../../database/queries/SearchArtists';
-import FindArtist from '../../database/queries/FindArtist';
-import CreateArtist from '../../database/queries/CreateArtist';
-import EditArtist from '../../database/queries/EditArtist';
-import DeleteArtist from '../../database/queries/DeleteArtist';
-import SetRetired from '../../database/queries/SetRetired';
-import SetNotRetired from '../../database/queries/SetNotRetired';
+// import GetAgeRange from '../../database/queries/GetAgeRange';
+// import GetYearsActiveRange from '../../database/queries/GetYearsActiveRange';
+// import SearchArtists from '../../database/queries/SearchArtists';
+// import FindArtist from '../../database/queries/FindArtist';
+// import CreateArtist from '../../database/queries/CreateArtist';
+// import EditArtist from '../../database/queries/EditArtist';
+// import DeleteArtist from '../../database/queries/DeleteArtist';
+// import SetRetired from '../../database/queries/SetRetired';
+// import SetNotRetired from '../../database/queries/SetNotRetired';
 
 export const resetArtist = () => {
   return { type: RESET_ARTIST };
