@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "prod": "NODE_ENV=production node server.js",
+    "start":"node server.js",
     "client": "npm start --prefix client",
-    "server:dev": "nodemon server.js",
-    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
-    "test": "nodemon --exec 'mocha --recursive -R min'",
-    "test1": "mocha --recursive -R min",
+    "build:c": "npm run build --prefix client",
+    "test:s": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min'",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",

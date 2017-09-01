@@ -1,8 +1,11 @@
+const express = require('express');
+//
 const app = require("./app");
 
 // only for heroku env.
 // in dev env, we use a separate sever for client side
 if (process.env.NODE_ENV === "production") {
+  // if (true){
   // express will serve up production assets like .js and .css
   app.use(express.static("client"));
 
