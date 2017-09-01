@@ -1,3 +1,3 @@
 module.exports = {
-  mongoURI: "mongodb://admin:admin1975@ds127730.mlab.com:27730/react-feedback"
+  mongoURI: "mongodb://admin:admin1975@ds151963.mlab.com:51963/mongo-music"
 };
