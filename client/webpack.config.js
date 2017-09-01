@@ -1,25 +1,37 @@
-const path = require('path');
+const path = require("path");
+
 module.exports = {
-  entry: [
-    './src/index.js',
-    'babel-polyfill',
-  ],
+  entry: ["babel-polyfill", "./src/index.js"],
   output: {
-    path: __dirname,
-    publicPath: '/',
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "./"),
+    filename: "bundle.js"
   },
   module: {
-    loaders: [{
-      exclude: /node_modules/,
-      loader: 'babel-loader'
-    }]
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      },
+      {
+        test: /\.less$/,
+        loader: ["style-loader", "css-loader", "less-loader"]
+      }
+    ]
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
-    modules: ['client', 'node_modules'],
+    // add following extension when module can not be found
+    extensions: [".js", ".jsx"],
+    modules: ["client", "node_modules"]
   },
   devServer: {
-    contentBase: './'
+    historyApiFallback: true,
+    contentBase: "./",
+    port: 3010,
+    proxy: {
+      "/api/*": {
+        target: "http://localhost:8010"
+      }
+    }
   }
 };
