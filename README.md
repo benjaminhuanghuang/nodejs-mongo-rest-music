@@ -12,7 +12,7 @@
 
 ## Prod environment
   server running on 8010
-  client side code was bundling into /client
+  client side code was bundling into /client by using npm script
   ```
      "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   ```

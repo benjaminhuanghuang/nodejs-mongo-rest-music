@@ -33,6 +33,7 @@
     "file-loader": "^0.11.2"
   },
   "dependencies": {
+    "webpack": "^3.5.5",
     "axios": "^0.16.2",
     "materialize-css": "^0.100.2",
     "lodash": "^4.17.4",
