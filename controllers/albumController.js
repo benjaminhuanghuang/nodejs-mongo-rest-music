@@ -28,9 +28,7 @@ module.exports = {
   // for /driver/:id
   delete(req, res, next) {
     const id = req.params.id;
-    const props = req.body;
-
-    // new : bool  true to return the modified document rather than the original. defaults to false
+    
     Album.findByIdAndRemove({ _id: id })
       .then(album => res.status(204).send(album))
       .catch(next);
