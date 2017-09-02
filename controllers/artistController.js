@@ -1,18 +1,38 @@
 const Artist = require("../models/artist");
 
 module.exports = {
-  async create(req, res) {
-    const { name } = req.body;
-    artist = new Artist({
-      name,
-    });
+  index(req, res, next) {
+    Artist.find({})  
+    .then(artist => res.send(artist))
+    .catch(next);
+  },
 
-    try {
-      await artist.save();
-    
-      res.send(artist);
-    } catch (err) {
-      res.status(422).send(err);
-    }
-  },  
+  create(req, res, next) {
+    const props = req.body;
+    Artist.create(props)
+      .then(artist => res.send(artist))
+      .catch(next)
+  },
+
+  // for /driver/:id
+  edit(req, res, next) {
+    const id = req.params.id;
+    const props = req.body;
+
+    // new : bool  true to return the modified document rather than the original. defaults to false
+    Artist.findByIdAndUpdate({ _id: id }, props, { new: true })
+      .then(artist => res.send(artist))
+      .catch(next);
+  },
+
+  // for /driver/:id
+  delete(req, res, next) {
+    const id = req.params.id;
+    const props = req.body;
+
+    // new : bool  true to return the modified document rather than the original. defaults to false
+    Artist.findByIdAndRemove({ _id: id })
+      .then(artist => res.status(204).send(artist))
+      .catch(next);
+  }
 }
