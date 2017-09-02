@@ -11,6 +11,7 @@ In config/keys.js, expose config for dev or prod
       module.exports = require('./dev');
     }
   ```
+Here, I use same db for dev and prod environment.
 
 When server running in testing environment, we do not connect to db in app.js
   ```

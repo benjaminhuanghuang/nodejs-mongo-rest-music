@@ -10,5 +10,8 @@ before(done => {
 
 // clean collection before each test
 beforeEach(done => {
-  done();
+  const { albums } = mongoose.connection.collections;
+  albums.drop(() => {
+    done();
+  });
 });

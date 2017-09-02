@@ -23,15 +23,15 @@
   ```
 
 ## Deploy to heroku
-  Don't hard code port 
+  - Don't hard code port 
   ```
   const PORT = process.env.PORT || 8010;   // for heroku deployment
   ```
-  
-  To install dev dependency:
+
+  - To install dev dependency:
   $heroku config:set NPM_CONFIG_PRODUCTION=false
 
-
+  - Commands
   $ heroku login
   
   $ heroku create ben-mongo-music
