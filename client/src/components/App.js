@@ -15,9 +15,9 @@ export default class App extends Component {
       <BrowserRouter>
         <div>
           <Header/>
-          {/* <Route path="artists/new" component={ArtistCreate} />
+          <Route path="artists/new" component={ArtistCreate} />
           <Route path="artists/:id" component={ArtistDetail} />
-          <Route path="artists/:id/edit" component={ArtistEdit} />*/}
+          <Route path="artists/:id/edit" component={ArtistEdit} />
         </div> 
       </BrowserRouter>
     );

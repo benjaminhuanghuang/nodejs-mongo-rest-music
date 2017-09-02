@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes/routes");
+const artistRoutes = require("./routes/artistRoutes");
+const albumRoutes = require("./routes/albumRoutes");
 const app = express();
 const keys = require("./config/keys");
 
@@ -16,6 +18,8 @@ if (process.env.NODE_ENV !== "test")
 app.use(bodyParser.json());
 
 routes(app);
+artistRoutes(app);
+albumRoutes(app);
 
 // error handling middleware
 app.use((err, req, res, next) => {

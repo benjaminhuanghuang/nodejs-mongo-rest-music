@@ -21,7 +21,7 @@ const ArtistSchema = new Schema({
   netWorth: Number,
   labelName: String,
   retired: Boolean,
-  albums: [AlbumSchema]
+  // albums: [AlbumSchema]
 });
 
 const Artist = mongoose.model("artist", ArtistSchema);
