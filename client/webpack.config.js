@@ -1,9 +1,10 @@
 const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: ["babel-polyfill", "./src/index.js"],
   output: {
-    path: path.resolve(__dirname, "./"),
+    path: path.resolve(__dirname, "./public"),
     filename: "bundle.js"
   },
   module: {
@@ -21,11 +22,13 @@ module.exports = {
         test: /\.css$/,
         loader: ["style-loader", "css-loader"]
       },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff' 
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff"
       },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-        loader: 'file-loader' 
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader"
       }
     ]
   },
@@ -36,12 +39,18 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: "./",
+    contentBase: "./public",
     port: 3010,
     proxy: {
       "/api/*": {
         target: "http://localhost:8010"
       }
     }
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin([
+      { from: "./index.html" },
+      { from: "./style", to: "style" } // Copy directory contents to {output}/dir/
+    ])
+  ]
 };

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
     "prod": "NODE_ENV=production node server.js",
-    "start":"node server.js",
+    "start": "node server.js",
     "client": "npm start --prefix client",
     "build:c": "npm run build --prefix client",
     "test:s": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min",

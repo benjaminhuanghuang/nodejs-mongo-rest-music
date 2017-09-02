@@ -5,3 +5,4 @@ npm-debug.log
 *.woff
 *.woff2
 bundle.js
+/public

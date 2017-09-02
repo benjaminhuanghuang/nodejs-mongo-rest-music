@@ -15,6 +15,7 @@ export default class App extends Component {
       <BrowserRouter>
         <div>
           <Header/>
+          <Route exact path="/" component={ArtistMain} />
           <Route path="artists/new" component={ArtistCreate} />
           <Route path="artists/:id" component={ArtistDetail} />
           <Route path="artists/:id/edit" component={ArtistEdit} />
