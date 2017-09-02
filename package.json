@@ -9,7 +9,7 @@
     "start": "node server.js",
     "client": "npm start --prefix client",
     "build:c": "npm run build --prefix client",
-    "test:s": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min",
+    "test:s": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min'",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",

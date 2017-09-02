@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Album = require('../../models/album');
+const { Album } = require('../../models/album');
 
 describe('Album model: ', () => {
   it('saves a album', (done) => {

@@ -1,18 +1,17 @@
-const Album = require("../models/album");
+const { Album } = require("../models/album");
 
 module.exports = {
   index(req, res, next) {
-    Album.find({})  
-    .then(albums => res.send(albums))
-    .catch(next);
+    Album.find({})
+      .then(albums => res.send(albums))
+      .catch(next);
   },
-
 
   create(req, res, next) {
     const props = req.body;
     Album.create(props)
       .then(album => res.send(album))
-      .catch(next)
+      .catch(next);
   },
 
   // for /driver/:id
@@ -32,7 +31,7 @@ module.exports = {
     const props = req.body;
 
     // new : bool  true to return the modified document rather than the original. defaults to false
-    Driver.findByIdAndRemove({ _id: id })
+    Album.findByIdAndRemove({ _id: id })
       .then(album => res.status(204).send(album))
       .catch(next);
   }
