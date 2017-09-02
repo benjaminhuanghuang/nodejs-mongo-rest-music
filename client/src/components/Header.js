@@ -18,7 +18,7 @@ class Header extends Component {
         <nav>
           <div className="nav-wrapper">
             <div className="col s12">
-              <a href="#" className="brand-logo">Mongo Music</a>
+              <Link to='/' className="brand-logo">Mongo Music</Link>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li>
                   <Link  to={`/artists/${this.state.id}`}>
@@ -26,7 +26,7 @@ class Header extends Component {
                   </Link>
                 </li>
                 <li> 
-                  <Link to='/artists/new'>Create Artist</Link>
+                  <Link to='/new'>Create Artist</Link>
                 </li>
               </ul>
             </div>
