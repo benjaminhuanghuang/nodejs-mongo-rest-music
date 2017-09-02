@@ -8,11 +8,10 @@ import reduxThunk from 'redux-thunk';
 //
 import App from './components/App';
 
-import reducers from './reducers';
+import rootReducer from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store = createStoreWithMiddleware(reducers);
-
+const store = createStoreWithMiddleware(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>

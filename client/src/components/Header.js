@@ -26,7 +26,7 @@ class Header extends Component {
                   </Link>
                 </li>
                 <li> 
-                  <Link to={'/artists/new'}>Create Artist</Link>
+                  <Link to='/artists/new'>Create Artist</Link>
                 </li>
               </ul>
             </div>
