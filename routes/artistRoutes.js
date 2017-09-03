@@ -5,7 +5,7 @@ const ArtistController = require("../controllers/artistController");
 module.exports = app => {
   app.get("/artists", ArtistController.index);
 
-  app.post("/artists", ArtistController.create);
+  app.post("/api/createArtist", ArtistController.create);
 
   app.delete("/artists/:id", ArtistController.delete);
 

@@ -47,9 +47,6 @@ module.exports = {
       .catch(next);
   },
   
-
-
-
   searchArtists(req, res, next){
     let _criteria = _.extend({
       age: { min: 0, max: 100 },

@@ -51,27 +51,37 @@ export const setAgeRange = () => async dispatch => {
   dispatch({ type: SET_AGE_RANGE, payload: res.data });
 };
 //
-export const setYearsActiveRangeSync = () => dispatch =>
-{
+export const setYearsActiveRangeSync = () => dispatch => {
   axios.get("/api/yearsActiveRange").then(res => {
     dispatch({ type: SET_YEARS_ACTIVE_RANGE, payload: res.data });
   });
-} 
+};
 //
-export const setYearsActiveRange = () => async dispatch =>
-{
+export const setYearsActiveRange = () => async dispatch => {
   const res = await axios.get("/api/yearsActiveRange");
   dispatch({ type: SET_YEARS_ACTIVE_RANGE, payload: res.data });
-} 
+};
 //
-export const searchArtistsSync = (criteria,offset = 0, limit = 20) => dispatch => {
+export const searchArtistsSync = (
+  criteria,
+  offset = 0,
+  limit = 20
+) => dispatch => {
   axios
-    .post("/api/searchArtists", {...criteria, offset, limit})
+    .post("/api/searchArtists", { ...criteria, offset, limit })
     .then(res => dispatch({ type: SEARCH_ARTISTS, payload: res.data }));
 };
 //
-export const searchArtists = (criteria, offset = 0, limit = 20) => async dispatch => {
-  const res = await axios.post("/api/searchArtists", {...criteria, offset, limit});
+export const searchArtists = (
+  criteria,
+  offset = 0,
+  limit = 20
+) => async dispatch => {
+  const res = await axios.post("/api/searchArtists", {
+    ...criteria,
+    offset,
+    limit
+  });
   dispatch({ type: SEARCH_ARTISTS, payload: res.data });
 };
 
@@ -80,15 +90,25 @@ export const findArtist = id => dispatch =>
     dispatch({ type: FIND_ARTIST, payload: artist })
   );
 
-export const createArtist = props => dispatch =>
-  CreateArtistProxy(props)
-    .then(artist => {
-      hashHistory.push(`artists/${artist._id}`);
-    })
+export const createArtistSync = (props, goto) => dispatch => {
+  axios
+    .post("/api/createArtist", props)
+    .then((artist) => goto(`artists/${artist._id}`))
     .catch(error => {
       console.log(error);
       dispatch({ type: CREATE_ERROR, payload: error });
     });
+};
+
+export const createArtist = (props, goto) => async dispatch => {
+  try {
+    const artist = await axios.post("/api/createArtist", props);
+    goto(`artists/${artist._id}`);
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: CREATE_ERROR, payload: err });
+  }
+};
 
 export const editArtist = (id, props) => dispatch =>
   EditArtistProxy(id, props)

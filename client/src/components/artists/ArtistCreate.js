@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
+import {withRouter} from "react-router-dom";
+//
 import * as actions from '../../actions';
 
 class ArtistCreate extends Component {
@@ -9,7 +11,9 @@ class ArtistCreate extends Component {
   }
 
   onSubmit(formProps) {
-    this.props.createArtist(formProps);
+    this.props.createArtist(formProps, ()=>{
+      this.props.history.push("/");
+    });
   }
 
   render() {
@@ -46,4 +50,4 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, actions)(reduxForm({
   form: 'create'
-})(ArtistCreate));
+})(withRouter(ArtistCreate)));
