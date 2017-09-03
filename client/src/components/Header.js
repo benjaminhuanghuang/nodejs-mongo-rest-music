@@ -20,11 +20,6 @@ class Header extends Component {
             <div className="col s12">
               <Link to='/' className="brand-logo">Mongo Music</Link>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li>
-                  <Link  to={`/artists/${this.state.id}`}>
-                    Random Artist
-                  </Link>
-                </li>
                 <li> 
                   <Link to='/new'>Create Artist</Link>
                 </li>

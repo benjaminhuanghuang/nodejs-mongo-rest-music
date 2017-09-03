@@ -92,7 +92,7 @@ export const findArtist = id => async dispatch =>
   const artist = res.data;
   dispatch({ type: FIND_ARTIST, payload: artist })   
 }
-
+//
 export const createArtistSync = (props, jumpTo) => dispatch => {
   axios
     .post("/api/createArtist", props)
@@ -122,7 +122,7 @@ export const editArtist = (id, props) => dispatch =>
       dispatch({ type: CREATE_ERROR, payload: error });
     });
 
-export const deleteArtist = id => dispatch =>
+export const deleteArtistSync = id => dispatch =>
   DeleteArtistProxy(id)
     .then(() => hashHistory.push("/"))
     .catch(error => {
@@ -130,6 +130,15 @@ export const deleteArtist = id => dispatch =>
       dispatch({ type: CREATE_ERROR, payload: error });
     });
 
+export const deleteArtist = (id, jumpTo) => async dispatch =>{
+  try {
+    await axios.delete(`/api/artists/${id}`);
+    jumpTo();
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: CREATE_ERROR, payload: error });
+  }
+}
 //
 // Helpers
 

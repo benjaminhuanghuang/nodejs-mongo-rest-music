@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import {withRouter} from "react-router-dom";
+//
 import * as actions from "../../actions";
 
 class ArtistDetail extends Component {
@@ -19,7 +21,9 @@ class ArtistDetail extends Component {
   }
 
   onDeleteClick() {
-    this.props.deleteArtist(this.props.match.params.id);
+    this.props.deleteArtist(this.props.match.params.id, ()=>{
+      this.props.history.push("/");
+    });
   }
 
   renderAlbums() {
@@ -115,4 +119,4 @@ const mapStateToProps = ({ artists }) => {
   return { artist: artists.artist };
 };
 
-export default connect(mapStateToProps, actions)(ArtistDetail);
+export default connect(mapStateToProps, actions)(withRouter(ArtistDetail));
