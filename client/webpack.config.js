@@ -42,7 +42,7 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       { from: "./index.html" },
-      { from: "./style", to: "style" } // Copy directory contents to {output}/dir/
+      // { from: "./style", to: "style" } // Copy directory contents to {output}/dir/
     ])
   ]
 };

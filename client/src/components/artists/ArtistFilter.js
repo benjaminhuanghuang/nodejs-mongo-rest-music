@@ -36,13 +36,7 @@ class ArtistFilter extends Component {
   renderInputs() {
     return TEXT_FIELDS.map(({ label, prop }) =>
       <div className="input-field" key={prop}>
-        <Field
-          placeholder={label}
-          id={prop}
-          name={prop}
-          component="input"
-          type="text"
-        />
+        <Field placeholder={label} id={prop} name={prop}  component="input" type="text"/>
       </div>
     );
   }
@@ -61,25 +55,12 @@ class ArtistFilter extends Component {
             {this.renderInputs()}
 
             <div className="input-field">
-              <Field
-                id="age"
-                label="Age"
-                component={Range}
-                type="text"
-                name="age"
-                range={this.props.ageRange}
-              />
+              <Field id="age" label="Age" component={Range} type="text" name="age" range={this.props.ageRange}/>
             </div>
 
             <div className="input-field">
-              <Field
-                id="years-active"
-                label="Years Active"
-                component={Range}
-                type="text"
-                name="yearsActive"
-                range={this.props.yearsActive}
-              />
+              <Field id="years-active" label="Years Active" component={Range} type="text" name="yearsActive"
+               range={this.props.yearsActive}/>
             </div>
 
             <div>
