@@ -15,6 +15,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SEARCH_ARTISTS:
+      console.log("SEARCH_ARTISTS", action.payload);
       return _.extend({}, state, {
         count: action.payload.length,
         all: action.payload

@@ -64,16 +64,10 @@ class ArtistIndex extends Component {
     if (this.props.selection.length) {
       return (
         <div>
-          <button
-            className="btn"
-            onClick={() => this.props.setRetired(this.props.selection)}
-          >
+          <button className="btn" onClick={() => this.props.setRetired(this.props.selection)}>
             Retire
           </button>
-          <button
-            className="btn"
-            onClick={() => this.props.setNotRetired(this.props.selection)}
-          >
+          <button className="btn" onClick={() => this.props.setNotRetired(this.props.selection)}>
             Unretire
           </button>
         </div>
