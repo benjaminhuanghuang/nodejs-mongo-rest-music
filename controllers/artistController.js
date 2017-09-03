@@ -7,23 +7,6 @@ module.exports = {
     .catch(next);
   },
 
-  search(req, res, next) {
-    const query = Artist.find(criteria)
-      .sort({[sortProperty]:1})
-      .skip(offset)
-      .limit(limit);
-
-    return Promise.all([query, Artist.count()])
-    .then((result)=>{
-      return {
-        all: results[0],
-        count:results[1],
-        offset,
-        limit
-      }
-    });
-  },
-
   create(req, res, next) {
     const props = req.body;
     Artist.create(props)
@@ -51,7 +34,28 @@ module.exports = {
   },
 
   searchArtists(req, res, next){
-    res.send({message:"Hello"});
+    const props = req.body;
+    const criteria = _.extend({
+      age: { min: 0, max: 100 },
+      yearsActive: { min: 0, max: 100 },
+      name: ''
+    }, props);
+
+    const query = Artist.find(criteria)
+      .sort({[sortProperty]:1})
+      .skip(offset)
+      .limit(limit);
+
+    Promise.all([query, Artist.count()])
+    .then((result)=>{
+      res.send( {
+        all: results[0],
+        count:results[1],
+        offset,
+        limit
+      })
+    })
+    .catch(next);
   },
 
   getAgeRange(req, res, next){

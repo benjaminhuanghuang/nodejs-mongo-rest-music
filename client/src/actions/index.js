@@ -71,6 +71,7 @@ export const searchArtistsSync = (...criteria) => dispatch => {
 };
 //
 export const searchArtists = (...criteria) => async dispatch => {
+  debugger;
   const res = await axios.post("/api/searchArtists", criteria);
 
   dispatch({ type: SEARCH_ARTISTS, payload: res.data });
