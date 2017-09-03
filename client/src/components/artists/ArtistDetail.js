@@ -5,12 +5,13 @@ import * as actions from '../../actions';
 
 class ArtistDetail extends Component {
   componentWillMount() {
-    this.props.findArtist(this.props.params.id);
+    debugger;
+    this.props.findArtist(this.props.match.params.id);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.params.id !== this.props.params.id) {
-      this.props.findArtist(nextProps.params.id);
+    if (nextProps.match.params.id !== this.props.match.params.id) {
+      this.props.findArtist(nextProps.match.params.id);
     }
   }
 
@@ -19,7 +20,7 @@ class ArtistDetail extends Component {
   }
 
   onDeleteClick() {
-    this.props.deleteArtist(this.props.params.id);
+    this.props.deleteArtist(this.props.match.params.id);
   }
 
   renderAlbums() {
@@ -52,7 +53,7 @@ class ArtistDetail extends Component {
   }
 
   render() {
-    if (!this.props.artist) { return <div>Todo: implement "FindArtist" query</div>; }
+    // if (!this.props.artist) { return <div>Todo: implement "FindArtist" query</div>; }
 
     const { artist: { name, age, genre, image, yearsActive, netWorth, labelName, _id } } = this.props;
 

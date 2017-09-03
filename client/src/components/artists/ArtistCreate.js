@@ -11,8 +11,8 @@ class ArtistCreate extends Component {
   }
 
   onSubmit(formProps) {
-    this.props.createArtist(formProps, ()=>{
-      this.props.history.push("/");
+    this.props.createArtist(formProps, (path)=>{
+      this.props.history.push(path);
     });
   }
 

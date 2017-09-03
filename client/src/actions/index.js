@@ -84,26 +84,34 @@ export const searchArtists = (
   });
   dispatch({ type: SEARCH_ARTISTS, payload: res.data });
 };
-
-export const findArtist = id => dispatch =>
-  FindArtistProxy(id).then(artist =>
+//
+export const findArtistSync = id => dispatch =>
+  axios.get(`/api/artists/${id}`)
+  .then(artist =>
     dispatch({ type: FIND_ARTIST, payload: artist })
   );
 
-export const createArtistSync = (props, goto) => dispatch => {
+export const findArtist = id => async dispatch =>
+{
+  const artist = axios.get(`/api/artists/${id}`).data;
+  dispatch({ type: FIND_ARTIST, payload: artist })   
+}
+
+export const createArtistSync = (props, jumpTo) => dispatch => {
   axios
     .post("/api/createArtist", props)
-    .then((artist) => goto(`artists/${artist._id}`))
+    .then((res) => jumpTo(`artists/${res.data._id}`))
     .catch(error => {
       console.log(error);
       dispatch({ type: CREATE_ERROR, payload: error });
     });
 };
 
-export const createArtist = (props, goto) => async dispatch => {
+export const createArtist = (props, jumpTo) => async dispatch => {
   try {
-    const artist = await axios.post("/api/createArtist", props);
-    goto(`artists/${artist._id}`);
+    const res = await axios.post("/api/createArtist", props);
+    const artist = res.data;
+    jumpTo(`artists/${artist._id}`);
   } catch (err) {
     console.log(err);
     dispatch({ type: CREATE_ERROR, payload: err });

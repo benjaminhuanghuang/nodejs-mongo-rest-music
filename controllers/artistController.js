@@ -29,6 +29,14 @@ module.exports = {
   },
 
   // for /driver/:id
+  get(req, res, next) {
+    const id = req.params.id;
+    Artist.findById({ _id: id })
+      .then(artist => res.status(200).send(artist))
+      .catch(next);
+  },
+
+  // for /driver/:id
   edit(req, res, next) {
     const id = req.params.id;
     const props = req.body;
