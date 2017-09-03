@@ -30,6 +30,7 @@ class ArtistFilter extends Component {
 
   handleSubmit(formProps) {
     const criteria = _.extend({ name: '' }, formProps);
+    //console.log("filter criteria", criteria);
     this.props.searchArtists(criteria);
   }
 
