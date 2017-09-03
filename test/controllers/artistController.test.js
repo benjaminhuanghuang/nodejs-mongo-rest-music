@@ -7,7 +7,7 @@ const Artist = require("../../models/artist");
 
 describe("Artist controller: ", () => {
   // Index
-  it("GET to /artists find all artists", done => {
+  it("GET to /api/artists find all artists", done => {
     const artist1 = new Artist({
       name: "artist1",
       age: 30,
@@ -20,7 +20,7 @@ describe("Artist controller: ", () => {
 
     Promise.all([artist1.save(), artist2.save()]).then(() => {
       request(app)
-        .get("/artists")
+        .get("/api/artists")
         .end((err, res) => {
           assert(res.body.length === 2);
           assert(res.body[1].name === "artist2");
@@ -30,10 +30,10 @@ describe("Artist controller: ", () => {
   });
 
   // Create
-  it("Post to /artists creates a new artist", done => {
+  it("Post to /api/artists creates a new artist", done => {
     Artist.count().then(count => {
       request(app)
-        .post("/artists")
+        .post("/api/artists")
         .send({
           name: "BonJoe",
           age:30
@@ -46,11 +46,11 @@ describe("Artist controller: ", () => {
     });
   });
   // Delete
-  it("DELETE to /artists/:id deleted a artist", done => {
+  it("DELETE to /api/artists/:id deleted a artist", done => {
     const artist = new Artist({ name: "1234" });
     artist.save().then(() => {
       request(app)
-        .delete(`/artists/${artist._id}`)
+        .delete(`/api/artists/${artist._id}`)
         .end(() => {
           Artist.findOne({ name: "1234" }).then(artist => {
             assert(artist === null);
@@ -60,13 +60,13 @@ describe("Artist controller: ", () => {
     });
   });
   // Edit
-  it("PUT to /artists/:id edit an existing artist", done => {
+  it("PUT to /api/artists/:id edit an existing artist", done => {
     const artist = new Artist({ name: "abcd" });
     artist.save().then(count => {
       request(app)
-        .put(`/artists/${artist._id}`)
-        .send({ age: 80 })
-        .end(() => {
+        .put(`/api/artists/${artist._id}`)
+        .send({ age: 80})
+        .end((data) => {
           Artist.findOne({ name: "abcd" }).then(artist => {
             assert(artist.age === 80);
             done();
@@ -74,4 +74,22 @@ describe("Artist controller: ", () => {
         });
     });
   });
+
+  // Search Artist
+  it.only("Post to /api/searchArtists search artists", done => {
+    const artist = new Artist({ name: "ben3" , age:40, yearsActive:50});
+    artist.save().then(count => {
+    request(app)
+      .post("/api/searchArtists")
+      .send({
+        name: "ben3",
+        age:{min:10, max:50}
+      })
+      .end((err, res) => {
+        assert(res.body.all.length === 1);
+        done();
+      });
+    });
+  });
+  
 });

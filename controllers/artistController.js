@@ -46,7 +46,6 @@ module.exports = {
   edit(req, res, next) {
     const id = req.params.id;
     const props = req.body;
-
     // new : bool  true to return the modified document rather than the original. defaults to false
     Artist.findByIdAndUpdate({ _id: id }, props, { new: true })
       .then(artist => res.send(artist))
@@ -75,7 +74,7 @@ module.exports = {
     
     const offset = _criteria.offset;
     const limit = _criteria.limit;
-
+    console.log(buildQuery(criteria));
     const query = Artist.find(buildQuery(criteria))
       .sort(sortOrder) //.sort({[sortProperty]:1})
       .skip(offset)
