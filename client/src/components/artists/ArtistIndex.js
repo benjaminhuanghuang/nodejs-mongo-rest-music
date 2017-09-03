@@ -7,7 +7,7 @@ import * as actions from '../../actions';
 
 class ArtistIndex extends Component {
   onChange(_id) {
-    if (_.contains(this.props.selection, _id)) {
+    if (_.includes(this.props.selection, _id)) {
       this.props.deselectArtist(_id);
     } else {
       this.props.selectArtist(_id);
@@ -24,7 +24,7 @@ class ArtistIndex extends Component {
           <input
             id={_id}
             type="checkbox"
-            checked={_.contains(this.props.selection, _id)}
+            checked={_.includes(this.props.selection, _id)}
             onChange={() => this.onChange(_id)}
           />
           <label htmlFor={_id} />
@@ -41,7 +41,7 @@ class ArtistIndex extends Component {
           </p>
         </div>
         <Link to={`artists/${artist._id}`} className="secondary-content">
-           <i className="material-icons">play_arrow</i>
+           <i className="material-icons">></i>
          </Link>
       </li>
     );

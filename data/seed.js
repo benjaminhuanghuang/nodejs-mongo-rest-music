@@ -1,13 +1,14 @@
-import _ from 'lodash';
-import faker from 'faker';
-import { Db, Server } from 'mongodb';
-import { GENRES } from './constants';
+const _  = require('lodash');
+const faker = require('faker');
+const Mongo = require('mongodb');
+const { Db, Server } = Mongo;
+const GENRES = require('./constants');
 
 const MINIMUM_ARTISTS = 2;
 const ARTISTS_TO_ADD = 15;
 
 let artistsCollection;
-const db = new Db('mongo_music', new Server('localhost', 27017));
+const db = new Db('mongo-music', new Server('admin:admin1975@ds151963.mlab.com', 51963));
 db.open()
   .then(() => {
     artistsCollection = db.collection('artists');

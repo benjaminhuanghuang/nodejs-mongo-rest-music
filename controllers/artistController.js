@@ -48,5 +48,30 @@ module.exports = {
     Artist.findByIdAndRemove({ _id: id })
       .then(artist => res.status(204).send(artist))
       .catch(next);
+  },
+
+  searchArtists(req, res, next){
+    res.send({message:"Hello"});
+  },
+
+  getAgeRange(req, res, next){
+    const minQuery = Artist.find({}).sort({age:1}).limit(1).then(artists => artists[0].age);
+    const maxQuery = Artist.find({}).sort({age:-1}).limit(1).then(artists => artists[0].age);
+    Promise.all([minQuery, maxQuery])
+    .then(result => 
+      {
+        console.log(result);
+        res.send({min:result[0], max:result[1]});
+      })
+    .catch(next);
+  },
+
+  getYearsActiveRange(req, res, next){
+
+    const minQuery = Artist.find({}).sort({yearsActive:1}).limit(1).then(artists => artists[0].yearsActive);
+    const maxQuery = Artist.find({}).sort({yearsActive:-1}).limit(1).then(artists => artists[0].yearsActive);
+    Promise.all([minQuery, maxQuery])
+    .then(result => res.send({min:result[0], max:result[1]}))
+    .catch(next);
   }
 }
