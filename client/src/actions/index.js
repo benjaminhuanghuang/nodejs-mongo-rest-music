@@ -1,5 +1,5 @@
 import _ from 'lodash';
-
+import { hashHistory } from 'react-router';
 import {
   SET_AGE_RANGE,
   SET_YEARS_ACTIVE_RANGE,
@@ -13,15 +13,15 @@ import {
   RESET_SELECTION
 } from './types';
 
-// import GetAgeRange from '../../database/queries/GetAgeRange';
-// import GetYearsActiveRange from '../../database/queries/GetYearsActiveRange';
-// import SearchArtists from '../../database/queries/SearchArtists';
-// import FindArtist from '../../database/queries/FindArtist';
-// import CreateArtist from '../../database/queries/CreateArtist';
-// import EditArtist from '../../database/queries/EditArtist';
-// import DeleteArtist from '../../database/queries/DeleteArtist';
-// import SetRetired from '../../database/queries/SetRetired';
-// import SetNotRetired from '../../database/queries/SetNotRetired';
+import GetAgeRange from '../../database/queries/GetAgeRange';
+import GetYearsActiveRange from '../../database/queries/GetYearsActiveRange';
+import SearchArtists from '../../database/queries/SearchArtists';
+import FindArtist from '../../database/queries/FindArtist';
+import CreateArtist from '../../database/queries/CreateArtist';
+import EditArtist from '../../database/queries/EditArtist';
+import DeleteArtist from '../../database/queries/DeleteArtist';
+import SetRetired from '../../database/queries/SetRetired';
+import SetNotRetired from '../../database/queries/SetNotRetired';
 
 export const resetArtist = () => {
   return { type: RESET_ARTIST };
@@ -76,7 +76,7 @@ export const findArtist = id => dispatch =>
 export const createArtist = props => dispatch =>
   CreateArtistProxy(props)
     .then(artist => {
-      hashHistory.push(`artists/${artist.id}`);
+      hashHistory.push(`artists/${artist._id}`);
     })
     .catch(error => {
       console.log(error);
@@ -182,5 +182,5 @@ const refreshSearch = (dispatch, getState) => {
   const { artists: { offset, limit } } = getState();
   const criteria = getState().form.filters.values;
 
-  dispatch(searchArtists({ name: '', ...criteria }, offset, limit));
+  dispatch(searchArtists(_.extend({}, { name: '' }, criteria), offset, limit));
 };

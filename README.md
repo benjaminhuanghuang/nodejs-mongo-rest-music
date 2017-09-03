@@ -39,7 +39,13 @@
   $ git push heroku master 
 
   $ heroku open
+
+
+## Use faker create testing data.
+  npm i faker -D
   
 ## Reference
   - https://www.udemy.com/the-complete-developers-guide-to-mongodb
   - https://github.com/StephenGrider/UpStarMusic
+  - https://www.udemy.com/webpack-2-the-complete-developers-guide/
+  - https://github.com/StephenGrider/WebpackProject

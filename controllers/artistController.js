@@ -7,6 +7,23 @@ module.exports = {
     .catch(next);
   },
 
+  search(req, res, next) {
+    const query = Artist.find(criteria)
+      .sort({[sortProperty]:1})
+      .skip(offset)
+      .limit(limit);
+
+    return Promise.all([query, Artist.count()])
+    .then((result)=>{
+      return {
+        all: results[0],
+        count:results[1],
+        offset,
+        limit
+      }
+    });
+  },
+
   create(req, res, next) {
     const props = req.body;
     Artist.create(props)
