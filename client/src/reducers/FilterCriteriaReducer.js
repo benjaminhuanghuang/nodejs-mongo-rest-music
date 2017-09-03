@@ -11,6 +11,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_AGE_RANGE:
+      debugger;
       return _.extend({}, state, { age: action.payload });
     case SET_YEARS_ACTIVE_RANGE:
       return _.extend({}, state, { yearsActive: action.payload });

@@ -21,12 +21,8 @@ class ArtistIndex extends Component {
     return (
       <li className={classes} key={_id}>
         <div>
-          <input
-            id={_id}
-            type="checkbox"
-            checked={_.includes(this.props.selection, _id)}
-            onChange={() => this.onChange(_id)}
-          />
+          <input id={_id} type="checkbox" checked={_.includes(this.props.selection, _id)}
+            onChange={() => this.onChange(_id)}/>
           <label htmlFor={_id} />
         </div>
         <img src={artist.image} className="circle" />

@@ -39,37 +39,37 @@ export const setNotRetired = ids => (dispatch, getState) =>
   SetNotRetiredProxy(ids.map(id => id.toString()))
     .then(() => dispatch({ type: RESET_SELECTION }))
     .then(() => refreshSearch(dispatch, getState));
-
+//
 export const setAgeRangeSync = () => dispatch => {
   axios.get("/api/ageRange").then(res => {
-    dispatch({ type: SET_AGE_RANGE, payload: res });
+    dispatch({ type: SET_AGE_RANGE, payload: res.data });
   });
 };
-
+//
 export const setAgeRange = () => async dispatch => {
   const res = await axios.get("/api/ageRange");
-  dispatch({ type: SET_AGE_RANGE, payload: res });
+  dispatch({ type: SET_AGE_RANGE, payload: res.data });
 };
-
+//
 export const setYearsActiveRangeSync = () => dispatch =>
 {
   axios.get("/api/yearsActiveRange").then(res => {
-    dispatch({ type: SET_YEARS_ACTIVE_RANGE, payload: res });
+    dispatch({ type: SET_YEARS_ACTIVE_RANGE, payload: res.data });
   });
 } 
-
+//
 export const setYearsActiveRange = () => async dispatch =>
 {
   const res = await axios.get("/api/yearsActiveRange");
-  dispatch({ type: SET_YEARS_ACTIVE_RANGE, payload: res });
+  dispatch({ type: SET_YEARS_ACTIVE_RANGE, payload: res.data });
 } 
-
+//
 export const searchArtistsSync = (...criteria) => dispatch => {
   axios
     .post("/api/searchArtists", criteria)
     .then(res => dispatch({ type: SEARCH_ARTISTS, payload: res.data }));
 };
-
+//
 export const searchArtists = (...criteria) => async dispatch => {
   const res = await axios.post("/api/searchArtists", criteria);
 
