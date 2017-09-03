@@ -1,3 +1,5 @@
+const _ = require('lodash');
+//
 const Artist = require("../models/artist");
 
 module.exports = {
@@ -35,6 +37,7 @@ module.exports = {
 
   searchArtists(req, res, next){
     const props = req.body;
+    console.log(props);
     const criteria = _.extend({
       age: { min: 0, max: 100 },
       yearsActive: { min: 0, max: 100 },
