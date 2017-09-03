@@ -2,6 +2,18 @@ const _ = require('lodash');
 //
 const Artist = require("../models/artist");
 
+function buildQuery(criteria){
+  const query ={};
+  if (criteria.age){
+    query.age = {
+      $gte: criteria.age.min,
+      $lte: criteria.age.max
+    }
+  }
+
+  return query;
+}
+
 module.exports = {
   index(req, res, next) {
     Artist.find({})  
@@ -34,26 +46,35 @@ module.exports = {
       .then(artist => res.status(204).send(artist))
       .catch(next);
   },
+  
+
+
 
   searchArtists(req, res, next){
-    const props = req.body;
-    console.log(props);
-    const criteria = _.extend({
+    let _criteria = _.extend({
       age: { min: 0, max: 100 },
       yearsActive: { min: 0, max: 100 },
       name: ''
-    }, props);
+    }, req.body);
+    criteria = _.omit(_criteria, 'sort')
+    
+    const sortProperty = _criteria.sort
+    const sortOrder = {};
+    sortOrder[sortProperty] =1;
+    
+    const offset = _criteria.offset;
+    const limit = _criteria.limit;
 
-    const query = Artist.find(criteria)
-      .sort({[sortProperty]:1})
+    const query = Artist.find(buildQuery(criteria))
+      .sort(sortOrder) //.sort({[sortProperty]:1})
       .skip(offset)
       .limit(limit);
 
     Promise.all([query, Artist.count()])
     .then((result)=>{
-      res.send( {
-        all: results[0],
-        count:results[1],
+      res.send({
+        all: result[0],
+        count:result[1],
         offset,
         limit
       })

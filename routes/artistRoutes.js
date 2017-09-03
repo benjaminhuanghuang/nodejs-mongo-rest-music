@@ -1,4 +1,3 @@
-const _ = require("lodash");
 //
 const ArtistController = require("../controllers/artistController");
 
@@ -13,10 +12,8 @@ module.exports = app => {
   app.put("/artists/:id", ArtistController.edit);
 
   app.post("/api/searchArtists", ArtistController.searchArtists);
-  
+
   app.get("/api/ageRange", ArtistController.getAgeRange);
- 
+
   app.get("/api/yearsActiveRange", ArtistController.getYearsActiveRange);
-  
-  
 };

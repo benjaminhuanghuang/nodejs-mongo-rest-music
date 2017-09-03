@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Paginator from './Paginator';
 import * as actions from '../../actions';
@@ -17,7 +17,7 @@ class ArtistIndex extends Component {
   renderList(artist) {
     const { _id } = artist;
     const classes = `collection-item avatar ${artist.retired && 'retired'}`;
-
+   
     return (
       <li className={classes} key={_id}>
         <div>
@@ -37,7 +37,7 @@ class ArtistIndex extends Component {
           </p>
         </div>
         <Link to={`artists/${artist._id}`} className="secondary-content">
-           <i className="material-icons">></i>
+           <i className="material-icons"></i>
          </Link>
       </li>
     );
@@ -80,10 +80,9 @@ class ArtistIndex extends Component {
       <div>
         {this.renderRetire()}
         <ul className="collection">
-          {this.props.artists.all.map(this.renderList.bind(this))}
+          {this.props.artists.all.map((artist) => this.renderList(artist))}
           {this.renderEmptyCollection()}
         </ul>
-
         {this.renderPaginator()}
       </div>
     );

@@ -64,16 +64,14 @@ export const setYearsActiveRange = () => async dispatch =>
   dispatch({ type: SET_YEARS_ACTIVE_RANGE, payload: res.data });
 } 
 //
-export const searchArtistsSync = (...criteria) => dispatch => {
+export const searchArtistsSync = (criteria,offset = 0, limit = 20) => dispatch => {
   axios
-    .post("/api/searchArtists", criteria)
+    .post("/api/searchArtists", {...criteria, offset, limit})
     .then(res => dispatch({ type: SEARCH_ARTISTS, payload: res.data }));
 };
 //
-export const searchArtists = (...criteria) => async dispatch => {
-  debugger;
-  const res = await axios.post("/api/searchArtists", criteria);
-
+export const searchArtists = (criteria, offset = 0, limit = 20) => async dispatch => {
+  const res = await axios.post("/api/searchArtists", {...criteria, offset, limit});
   dispatch({ type: SEARCH_ARTISTS, payload: res.data });
 };
 
