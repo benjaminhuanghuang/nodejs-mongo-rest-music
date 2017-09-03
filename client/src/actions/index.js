@@ -62,21 +62,13 @@ export const setYearsActiveRange = () => async dispatch => {
   dispatch({ type: SET_YEARS_ACTIVE_RANGE, payload: res.data });
 };
 //
-export const searchArtistsSync = (
-  criteria,
-  offset = 0,
-  limit = 20
-) => dispatch => {
+export const searchArtistsSync = (criteria, offset = 0, limit = 20) => dispatch => {
   axios
     .post("/api/searchArtists", { ...criteria, offset, limit })
     .then(res => dispatch({ type: SEARCH_ARTISTS, payload: res.data }));
 };
 //
-export const searchArtists = (
-  criteria,
-  offset = 0,
-  limit = 20
-) => async dispatch => {
+export const searchArtists = ( criteria, offset = 0, limit = 20) => async dispatch => {
   const res = await axios.post("/api/searchArtists", {
     ...criteria,
     offset,
@@ -86,14 +78,18 @@ export const searchArtists = (
 };
 //
 export const findArtistSync = id => dispatch =>
-  axios.get(`/api/artists/${id}`)
-  .then(artist =>
-    dispatch({ type: FIND_ARTIST, payload: artist })
+  axios.get(`/api/artists/${id}`).then(res =>
+    {
+      const artist = res.data;
+      console.log(artist);
+      dispatch({ type: FIND_ARTIST, payload: artist })
+    }
   );
 
 export const findArtist = id => async dispatch =>
 {
-  const artist = axios.get(`/api/artists/${id}`).data;
+  const res = await axios.get(`/api/artists/${id}`);
+  const artist = res.data;
   dispatch({ type: FIND_ARTIST, payload: artist })   
 }
 

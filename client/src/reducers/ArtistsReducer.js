@@ -21,7 +21,9 @@ export default (state = INITIAL_STATE, action) => {
         all: action.payload.all
       })
     case FIND_ARTIST:
-      return _.extend({}, state, { artist: action.payload });
+      const data = _.extend({}, state, { artist: action.payload });
+      //console.log("FIND_ARTIST payload", data);
+      return data;
     case RESET_ARTIST:
       return _.extend({}, state, { artist: null });
     default:

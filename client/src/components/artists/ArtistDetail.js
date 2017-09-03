@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import * as actions from '../../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import * as actions from "../../actions";
 
 class ArtistDetail extends Component {
   componentWillMount() {
-    debugger;
     this.props.findArtist(this.props.match.params.id);
   }
 
@@ -26,7 +25,9 @@ class ArtistDetail extends Component {
   renderAlbums() {
     const { albums } = this.props.artist;
 
-    if (!albums || !albums.map) { return; }
+    if (!albums || !albums.map) {
+      return;
+    }
 
     return albums.map(album => {
       return (
@@ -53,9 +54,11 @@ class ArtistDetail extends Component {
   }
 
   render() {
-    // if (!this.props.artist) { return <div>Todo: implement "FindArtist" query</div>; }
-
-    const { artist: { name, age, genre, image, yearsActive, netWorth, labelName, _id } } = this.props;
+    if (!this.props.artist) { return <div>Todo: implement "FindArtist" query</div>; }
+    
+    const {
+      artist: { name, age, genre, image, yearsActive, netWorth, labelName, _id }
+    } = this.props;
 
     return (
       <div>
@@ -74,28 +77,39 @@ class ArtistDetail extends Component {
           </li>
           <li className="collection-item">
             <h5>{yearsActive}</h5>
-            <p><i>Years Active</i></p>
+            <p>
+              <i>Years Active</i>
+            </p>
           </li>
           <li className="collection-item">
             <h5>{age}</h5>
-            <p><i>Years Old</i></p>
+            <p>
+              <i>Years Old</i>
+            </p>
           </li>
           <li className="collection-item">
             <h5>${netWorth}</h5>
-            <p><i>Net Worth</i></p>
+            <p>
+              <i>Net Worth</i>
+            </p>
           </li>
           <li className="collection-item">
             <h5>{labelName}</h5>
-            <p><i>Label</i></p>
+            <p>
+              <i>Label</i>
+            </p>
           </li>
-          <li className="flex wrap">
-            {this.renderAlbums()}
-          </li>
+          <li className="flex wrap">{this.renderAlbums()}</li>
         </ul>
       </div>
     );
   }
 }
+
+// const mapStateToProps = (state) => {
+//   console.log("Artist Details", state);
+//   return { artist: state.artists.artist };
+// };
 
 const mapStateToProps = ({ artists }) => {
   return { artist: artists.artist };
